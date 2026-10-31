@@ -49,3 +49,7 @@ geckodriver
 geckodriver.exe
 
 check_driver.py
+
+#chrome driver
+
+driver\chromedriver.exe

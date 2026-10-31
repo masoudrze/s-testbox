@@ -5,9 +5,10 @@ from pages.base_page import BasePage
 
 class LoginPage(BasePage):
     USERNAME_INPUT = (By.ID, "username")
-    PASSWORD_INPUT=(By.ID, "username")
+    PASSWORD_INPUT=(By.ID, "password")
+    SUBMIT_BUTTON=(By.ID, "submit")
     LOGIN_BUTTON = (By.XPATH, '//button[text()="ورود"]')
-    ERROR_MESSAGE = (By.CSS_SELECTOR, ".login-alert.ng-binding")
+    ERROR_MESSAGE = (By.ID, "error")
 
     def login(self, username, password):
         self.type(self.USERNAME_INPUT, username)
@@ -22,9 +23,9 @@ class LoginPage(BasePage):
         login_page = LoginPage(driver)
 
         driver.get(f"{base_url}")
-        login_page.login("supervisor", "1")
+        login_page.login("student", "Password123")
 
-        assert "/AdminIndex" in driver.current_url
+        assert "/logged-in-successfully/" in driver.current_url
 
 
 def test_normal_user_can_login(driver, base_url):
@@ -34,7 +35,7 @@ def test_normal_user_can_login(driver, base_url):
     login_page.login("user2", "1")
 
     assert "/UserIndex" in driver.current_url
-    assert "/AdminIndex" not in driver.current_url
+    assert "/logged-in-successfully/" not in driver.current_url
 
 
 def test_user_cannot_login_with_invalid_credentials(driver, base_url):
