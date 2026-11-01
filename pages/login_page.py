@@ -19,31 +19,4 @@ class LoginPage(BasePage):
         return self.get_text(self.ERROR_MESSAGE)
 
 
-    def test_admin_can_login(driver, base_url):
-        login_page = LoginPage(driver)
-
-        driver.get(f"{base_url}")
-        login_page.login("student", "Password123")
-
-        assert "/logged-in-successfully/" in driver.current_url
-
-
-def test_normal_user_can_login(driver, base_url):
-    login_page = LoginPage(driver)
-
-    driver.get(f"{base_url}")
-    login_page.login("user2", "1")
-
-    assert "/UserIndex" in driver.current_url
-    assert "/logged-in-successfully/" not in driver.current_url
-
-
-def test_user_cannot_login_with_invalid_credentials(driver, base_url):
-    login_page = LoginPage(driver)
-
-    driver.get(f"{base_url}")
-    login_page.login("invalid_username", "invalid_password")
-
-    assert "/login" in driver.current_url
-    assert login_page.get_error_message() == "Invalid username or password"
-
+    

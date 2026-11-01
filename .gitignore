@@ -52,4 +52,4 @@ check_driver.py
 
 #chrome driver
 
-driver\chromedriver.exe
+drivers\chromedriver.exe
