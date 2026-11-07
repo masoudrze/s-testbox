@@ -11,7 +11,9 @@ def test_user_can_login(driver, base_url):
 
     login_page.login("masoud", "123456")
 
-    input("Enter otp and press enter")
+    otp = input("Enter 6-digit otp:").strip()
+    login_page.enter_otp(otp)
+
     WebDriverWait(driver, settings.default_timeout).until(
         EC.url_contains("/admin/dashboard")
     )
