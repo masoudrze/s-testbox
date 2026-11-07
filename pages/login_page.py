@@ -4,10 +4,12 @@ from pages.base_page import BasePage
 
 
 class LoginPage(BasePage):
-    USERNAME_INPUT = (By.ID, "username")
-    PASSWORD_INPUT=(By.ID, "password")
-    SUBMIT_BUTTON=(By.ID, "submit")
-    ERROR_MESSAGE = (By.ID, "error")
+    USERNAME_INPUT = (By.ID, ":r2:")
+    PASSWORD_INPUT=(By.ID, ":r3:")
+    SUBMIT_BUTTON=(By.CSS_SELECTOR, "button[type='submit']")
+    ERROR_MESSAGE = (By.CSS_SELECTOR, ".MuiBox-root.rtl-1mn67p")
+
+    
 
     def login(self, username, password):
         self.type(self.USERNAME_INPUT, username)
