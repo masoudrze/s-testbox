@@ -30,22 +30,22 @@ def create_chrome_driver() -> WebDriver:
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-notifications")
 
-    try:
-        return webdriver.Chrome(options=options)
+    # try:
+    #     return webdriver.Chrome(options=options)
 
-    except NoSuchDriverException as error:
-        driver_path = (
+    # except NoSuchDriverException as error:
+    driver_path = (
             Path(__file__).resolve().parent.parent
             / "drivers"
             / "chromedriver.exe"
         )
 
-        if not driver_path.is_file():
-            raise FileNotFoundError(
-                f"Local ChromeDriver not found: {driver_path}"
-            ) from error
+        # if not driver_path.is_file():
+        #     raise FileNotFoundError(
+        #         f"Local ChromeDriver not found: {driver_path}"
+        #     ) from error
 
-        return webdriver.Chrome(
+    return webdriver.Chrome(
             service=Service(executable_path=str(driver_path)),
             options=options,
         )
